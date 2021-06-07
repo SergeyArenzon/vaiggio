@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-// import User from '../../models/User';
 import connectDB from '../../utils/connectDB';
 import User from '../../models/User';
 import { checkUserExist } from '../../utils/mongooseHelpers';
+import { userSchema } from '../../validations/user';
 
 export default async (req, res) => {
     connectDB();
@@ -10,7 +10,6 @@ export default async (req, res) => {
     if (req.method === 'POST') {
         const { email, password } = req.body;
 
-        console.log(email);
         // check for user existence
         const userExist = await checkUserExist(email);
         // console.log(userExist);
@@ -18,6 +17,14 @@ export default async (req, res) => {
         // if user exist stop and return
         if (userExist) {
             res.status(409).json({ message: 'User exist!' });
+            return;
+        }
+
+        // check for input validity
+        const isValid = await userSchema.isValid({ email, password });
+
+        if (!isValid) {
+            res.status(400).json({ message: 'User input is not valid!' });
             return;
         }
 

@@ -12,7 +12,6 @@ export default async function dbConnect() {
             useUnifiedTopology: true,
             useFindAndModify: false,
         });
-
         console.log('Mongo connected');
     }catch(error){
         console.log('Mongo connection error', error);
