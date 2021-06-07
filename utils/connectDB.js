@@ -5,16 +5,17 @@ export default async function dbConnect() {
         // console.log('Already connected to mongo');
         return;
     }
-    await mongoose.connect(process.env.MONGODB_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    });
+    try{
 
-    mongoose.connection.on('connected', () => {
-        console.log('Connected to mongo');
-    });
-    mongoose.connection.on('error', (error) => {
-        console.log('Error connecting to mongo!', error);
-    });
+        await mongoose.connect(process.env.MONGODB_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+        });
+
+        console.log('Mongo connected');
+    }catch(error){
+        console.log('Mongo connection error', error);
+
+    }
 }

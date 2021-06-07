@@ -10,8 +10,10 @@ export default async (req, res) => {
     if (req.method === 'POST') {
         const { email, password } = req.body;
 
+        console.log(email);
         // check for user existence
         const userExist = await checkUserExist(email);
+        // console.log(userExist);
 
         // if user exist stop and return
         if (userExist) {

@@ -8,11 +8,6 @@ export const checkUserExist = async (email) => {
     if (user) {
         return true;
     }
-
     return false;
 };
 
-
-export const createUser = async() => {
-    
-}
