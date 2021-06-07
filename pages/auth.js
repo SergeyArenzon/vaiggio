@@ -12,6 +12,8 @@ export default function auth() {
             password: passwordRef.current.value,
         };
 
+        
+
         const response = await fetch('/api/auth', {
             method: 'POST',
             body: JSON.stringify(data),

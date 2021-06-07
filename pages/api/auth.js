@@ -3,6 +3,7 @@ import connectDB from '../../utils/connectDB';
 import User from '../../models/User';
 import { checkUserExist } from '../../utils/mongooseHelpers';
 import { userSchema } from '../../validations/user';
+import bcrypt from 'bcrypt';
 
 export default async (req, res) => {
     connectDB();
@@ -20,6 +21,8 @@ export default async (req, res) => {
             return;
         }
 
+        // user isnt exist
+
         // check for input validity
         const isValid = await userSchema.isValid({ email, password });
 
@@ -28,8 +31,11 @@ export default async (req, res) => {
             return;
         }
 
-        // user isnt exist
-        const user = new User({ email, password });
+        // hashing password
+        const saltRounds = 10;
+        const hashedPassword = bcrypt.hashSync(password, saltRounds);
+
+        const user = new User({ email, password: hashedPassword });
 
         //  create new user in db
         try {
