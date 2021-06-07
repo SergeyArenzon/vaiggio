@@ -1,14 +1,11 @@
 import mongoose from 'mongoose';
 
 export default async function dbConnect() {
-    const db =
-        'mongodb+srv://sergey:TyphooNN91!@cluster0.8rtgv.mongodb.net/data?retryWrites=true&w=majority';
-
     if (mongoose.connections[0].readyState) {
-        console.log('Already connected to mongo');
+        // console.log('Already connected to mongo');
         return;
     }
-    await mongoose.connect(db, {
+    await mongoose.connect(process.env.MONGODB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,

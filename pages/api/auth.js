@@ -5,7 +5,7 @@ import User from '../../models/User';
 import { checkUserExist } from '../../utils/mongooseHelpers';
 
 export default async (req, res) => {
-    await connectDB();
+    connectDB();
 
     if (req.method === 'POST') {
         const { email, password } = req.body;

@@ -1,5 +1,8 @@
 import User from '../models/User';
 
+
+
+//  check for user existance
 export const checkUserExist = async (email) => {
     const user = await User.findOne({ email: email }).exec();
     if (user) {
@@ -8,3 +11,8 @@ export const checkUserExist = async (email) => {
 
     return false;
 };
+
+
+export const createUser = async() => {
+    
+}
