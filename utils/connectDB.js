@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export default async function dbConnect() {
     const db =
-        'mongodb+srv://sergey:TyphooNN91!@cluster0.8rtgv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+        'mongodb+srv://sergey:TyphooNN91!@cluster0.8rtgv.mongodb.net/data?retryWrites=true&w=majority';
 
     if (mongoose.connections[0].readyState) {
         console.log('Already connected to mongo');
