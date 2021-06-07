@@ -2,14 +2,27 @@
 // import User from '../../models/User';
 import connectDB from '../../utils/connectDB';
 import User from '../../models/User';
+import { checkUserExist } from '../../utils/mongooseHelpers';
 
 export default async (req, res) => {
     await connectDB();
 
     if (req.method === 'POST') {
         const { email, password } = req.body;
+
+        // check for user existence
+        const userExist = await checkUserExist(email);
+
+        // if user exist stop and return
+        if (userExist) {
+            res.status(409).json({ message: 'User exist!' });
+            return;
+        }
+
+        // user isnt exist
         const user = new User({ email, password });
 
+        //  create new user in db
         try {
             const response = await user.save();
             res.status(201).json({
@@ -17,9 +30,10 @@ export default async (req, res) => {
                 response,
             });
         } catch (error) {
-          res.status(501).json({
-            message: 'Failed adding user',
-        });
+            res.status(501).json({
+                message: 'Failed adding user',
+                error,
+            });
         }
         await user.save();
     }
