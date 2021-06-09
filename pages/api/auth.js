@@ -35,6 +35,14 @@ export default async (req, res) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
+
+        // compeare functions
+        
+        // bcrypt.compare(password, hashedPassword).then(function(result) {
+        //     console.log(result)
+            
+        // });
+
         const user = new User({ email, password: hashedPassword });
 
         //  create new user in db
