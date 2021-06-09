@@ -70,23 +70,28 @@ export default function auth() {
         }
     };
 
-    // if(loading){
-    //     return <h1>Loading...</h1>
-    // }
+    const signUpForm = (
+        <form onSubmit={registerHandler}>
+            <input type="email" ref={emailRef}></input>
+            <input type="password" ref={passwordRef}></input>
+            <button>register</button>
+        </form>
+    );
+
+    const logInForm = (
+        <form onSubmit={loginHandler}>
+            <input type="email" ref={emailLoginRef}></input>
+            <input type="password" ref={emailPasswordRef}></input>
+            <button>login</button>
+        </form>
+    );
 
     return (
         <div>
-            <form onSubmit={registerHandler}>
-                <input type="email" ref={emailRef}></input>
-                <input type="password" ref={passwordRef}></input>
-                <button>register</button>
-            </form>
+            {signUpMode ? signUpForm : logInForm}
 
-            <form onSubmit={loginHandler}>
-                <input type="email" ref={emailLoginRef}></input>
-                <input type="password" ref={emailPasswordRef}></input>
-                <button>login</button>
-            </form>
+            <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+
             <button
                 onClick={() => {
                     signOut({ redirect: false });
