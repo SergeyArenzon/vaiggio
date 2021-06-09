@@ -5,7 +5,7 @@ export default function Layout({ children }) {
         <div>
             <Toolbar />
 
-            <div style={{ paddingTop: '25px',height: '100vh', position:'relative', background: 'blue'}}>{children}</div>
+            <div style={{ paddingTop: '25px',height: '100vh', position:'relative'}}>{children}</div>
         </div>
     );
 }

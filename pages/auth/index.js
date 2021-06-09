@@ -1,12 +1,31 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { userSchema } from '../../validations/user';
 import { signIn, signOut } from 'next-auth/client';
+import { getSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+
+import Router from 'next/router';
 
 export default function auth() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const emailLoginRef = useRef();
     const emailPasswordRef = useRef();
+    const router = useRouter();
+
+    const [loading, setLoading] = useState(true);
+    const [signUpMode, setSignUpMode] = useState(true);
+
+    useEffect(() => {
+        getSession().then((session) => {
+            console.log('555555555');
+            if (session) {
+                // router.replace('/');
+            } else {
+                setLoading(false);
+            }
+        });
+    }, [router]);
 
     const registerHandler = async (event) => {
         event.preventDefault();
@@ -35,24 +54,25 @@ export default function auth() {
 
     const loginHandler = async (event) => {
         event.preventDefault();
-       
 
         const data = {
             email: emailLoginRef.current.value,
             password: emailPasswordRef.current.value,
         };
 
-       
         const result = await signIn('credentials', {
             redirect: false,
             email: data.email,
             password: data.password,
         });
-        if(!result.error){
+        if (!result.error) {
             // success on login!
-            
         }
     };
+
+    // if(loading){
+    //     return <h1>Loading...</h1>
+    // }
 
     return (
         <div>
@@ -67,7 +87,14 @@ export default function auth() {
                 <input type="password" ref={emailPasswordRef}></input>
                 <button>login</button>
             </form>
-            <button onClick={() => signOut({ redirect: false })}>logout</button>
+            <button
+                onClick={() => {
+                    signOut({ redirect: false });
+                    Router.push('/');
+                }}
+            >
+                logout
+            </button>
         </div>
     );
 }

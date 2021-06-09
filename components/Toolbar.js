@@ -1,4 +1,5 @@
 import { useSession } from 'next-auth/client';
+import Link from 'next/link';
 
 export default function Toolbar() {
     const [session, loading] = useSession();
@@ -15,5 +16,12 @@ export default function Toolbar() {
         zIndex: 50,
     };
 
-    return <div style={style}>{session ? 'loggedin' : 'NOT login'}</div>;
+    return (
+        <div style={style}>
+            {session ? 'loggedin' : 'NOT login'}{' '}
+            <Link href="/profile">
+                <a style={{ background: 'white' }}>PROFILE</a>
+            </Link>
+        </div>
+    );
 }
