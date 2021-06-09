@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { userSchema } from '../../validations/user';
-import { signIn } from 'next-auth/client';
+import { signIn, signOut } from 'next-auth/client';
 
 export default function auth() {
     const emailRef = useRef();
@@ -67,6 +67,7 @@ export default function auth() {
                 <input type="password" ref={emailPasswordRef}></input>
                 <button>login</button>
             </form>
+            <button onClick={() => signOut({ redirect: false })}>logout</button>
         </div>
     );
 }
