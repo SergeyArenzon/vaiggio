@@ -1,15 +1,22 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { getAllLocations } from '../utils/mongooseHelpers';
 
 export default function Home(props) {
-    useEffect(() => {}, []);
+    const [locations, setLocations] = useState(props.locations);
+
+    useEffect(async () => {
+        const response = await fetch('/api/location');
+        const updatedLocations = await response.json();
+
+        setLocations( updatedLocations.locations);
+    }, []);
 
     const locationsList = (
         <ul>
-            {props.locations.map((location, index) => {
+            {locations.map((location, index) => {
                 return (
                     <li key={location.name + index}>
                         <div>name: {location.name}</div>
@@ -32,9 +39,8 @@ export default function Home(props) {
 export async function getStaticProps(context) {
     const locations = await getAllLocations();
 
-    console.log(locations);
     return {
         props: { locations: locations },
-        revalidate: 100,
+        revalidate: 300,
     };
 }

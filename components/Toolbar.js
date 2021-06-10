@@ -4,8 +4,8 @@ import Link from 'next/link';
 export default function Toolbar() {
     const [session, loading] = useSession();
 
-    console.log(loading);
-    console.log(session);
+    // console.log(loading);
+    // console.log(session);
 
     const style = {
         width: '100%',

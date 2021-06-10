@@ -1,9 +1,9 @@
 import Location from '../../../models/Location';
 import connectDB from '../../../utils/connectDB';
+import { getAllLocations } from '../../../utils/mongooseHelpers';
 
 const handler = async (req, res) => {
     await connectDB();
-
 
     // Create new Location
     if (req.method === 'POST') {
@@ -29,6 +29,17 @@ const handler = async (req, res) => {
             });
         }
         await locationModel.save();
+    }
+    if (req.method === 'GET') {
+        try {
+            const locations = await getAllLocations();
+            res.status(200).json({ locations: locations });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error in fetchin locations',
+                error,
+            });
+        }
     }
 };
 

@@ -19,7 +19,6 @@ export default function auth() {
 
     useEffect(() => {
         getSession().then((session) => {
-            console.log('555555555');
             if (session) {
                 // router.replace('/');
             } else {
