@@ -3,6 +3,9 @@ import connectDB from '../../../utils/connectDB';
 
 const handler = async (req, res) => {
     await connectDB();
+
+
+    // Create new Location
     if (req.method === 'POST') {
         const { name, price, location, description } = req.body;
 
