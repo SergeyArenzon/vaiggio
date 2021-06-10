@@ -9,8 +9,9 @@ import Router from 'next/router';
 export default function auth() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const emailLoginRef = useRef();
-    const emailPasswordRef = useRef();
+    const lastNameRef = useRef();
+    const firstNameRef = useRef();
+
     const router = useRouter();
 
     const [loading, setLoading] = useState(true);
@@ -27,12 +28,17 @@ export default function auth() {
         });
     }, [router]);
 
+    /////////////////////
+    //  Signout method //
+    /////////////////////
     const registerHandler = async (event) => {
         event.preventDefault();
 
         const data = {
             email: emailRef.current.value,
             password: passwordRef.current.value,
+            firstName: firstNameRef.current.value,
+            lastName: lastNameRef.current.value,
         };
         const isValid = await userSchema.isValid(data);
 
@@ -52,12 +58,15 @@ export default function auth() {
         return response.json();
     };
 
+    ////////////////////
+    //  Signin method //
+    ////////////////////
     const loginHandler = async (event) => {
         event.preventDefault();
 
         const data = {
-            email: emailLoginRef.current.value,
-            password: emailPasswordRef.current.value,
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
         };
 
         const result = await signIn('credentials', {
@@ -74,14 +83,16 @@ export default function auth() {
         <form onSubmit={registerHandler}>
             <input type="email" ref={emailRef}></input>
             <input type="password" ref={passwordRef}></input>
+            <input type="text" ref={firstNameRef}></input>
+            <input type="text" ref={lastNameRef}></input>
             <button>register</button>
         </form>
     );
 
     const logInForm = (
         <form onSubmit={loginHandler}>
-            <input type="email" ref={emailLoginRef}></input>
-            <input type="password" ref={emailPasswordRef}></input>
+            <input type="email" ref={emailRef}></input>
+            <input type="password" ref={passwordRef}></input>
             <button>login</button>
         </form>
     );

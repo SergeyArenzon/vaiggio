@@ -1,10 +1,19 @@
+
+// 
+//  mongoose Users module
+// 
+
+
+
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    email: String, // String is shorthand for {type: String}
+    email: String, 
     password: String,
+    firstName: String,
+    lastName: String,
     date: { type: Date, default: Date.now },
 });
 

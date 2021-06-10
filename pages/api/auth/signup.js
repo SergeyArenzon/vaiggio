@@ -9,7 +9,7 @@ export default async (req, res) => {
     connectDB();
 
     if (req.method === 'POST') {
-        const { email, password } = req.body;
+        const { email, password, lastName, firstName } = req.body;
 
         // check for user existence
         const userExist = await checkUserExist(email);
@@ -35,15 +35,19 @@ export default async (req, res) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-
         // compeare functions
-        
+
         // bcrypt.compare(password, hashedPassword).then(function(result) {
         //     console.log(result)
-            
+
         // });
 
-        const user = new User({ email, password: hashedPassword });
+        const user = new User({
+            email,
+            password: hashedPassword,
+            firstName,
+            lastName,
+        });
 
         //  create new user in db
         try {
