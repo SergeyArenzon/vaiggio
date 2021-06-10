@@ -1,8 +1,19 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import { useEffect } from 'react';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  return <div >index page</div>
-  
+
+  useEffect(() => {
+    
+  }, [])
+    return (
+        <div>
+            <div>Traveling Locations</div> 
+            <ul>
+
+            </ul>
+        </div>
+    );
 }

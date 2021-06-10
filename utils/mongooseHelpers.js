@@ -1,4 +1,5 @@
 import User from '../models/User';
+import Location from '../models/Location';
 import { compare } from 'bcrypt';
 import connectDB from './connectDB';
 
@@ -21,3 +22,4 @@ export const verifyPassword = async (password, hashedPassword) => {
     const isValid = await compare(password, hashedPassword);
     return isValid;
 };
+
