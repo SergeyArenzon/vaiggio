@@ -23,7 +23,7 @@ export default function index() {
                 'Content-Type': 'application/json',
             },
         });
-        return response.json();
+        console.log(await response.json());
     };
 
     return (

@@ -11,7 +11,7 @@ export default function Home(props) {
         const response = await fetch('/api/location');
         const updatedLocations = await response.json();
 
-        setLocations( updatedLocations.locations);
+        setLocations(updatedLocations.locations);
     }, []);
 
     const locationsList = (
