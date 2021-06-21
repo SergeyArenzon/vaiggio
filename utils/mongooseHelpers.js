@@ -26,15 +26,15 @@ export const verifyPassword = async (password, hashedPassword) => {
 export const getAllLocations = async () => {
     await connectDB();
     const res = await Location.find().lean();
-   
     
     var locations = res.map((location) => ({
-        id: JSON.stringify(location._id),
+        id: location._id.toString(),
         name: location.name,
         price: location.price,
         location: location.location,
         description: location.description,
     }));
+
 
     return locations;
 };

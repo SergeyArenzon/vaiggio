@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 
 export default function LocationInfo() {
     const router = useRouter()
-    const { id, location} = router.query
+    const { id, data} = router.query
 
-    console.log(location);
+    console.log(data.id);
     return <div>location info: {id}</div>;
 }
 
