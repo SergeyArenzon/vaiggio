@@ -51,6 +51,7 @@ export default function Home(props) {
 export async function getStaticProps(context) {
     const locations = await getAllLocations();
 
+    console.log(locations);
     return {
         props: { locations: locations },
         revalidate: 300,
