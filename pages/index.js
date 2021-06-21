@@ -24,7 +24,7 @@ export default function Home(props) {
                         <div>location: {location.location}</div>
                         <div>description: {location.description}</div>
                         <div>price: {location.price}</div>
-                        <Link href={`/location/${location.name}`}>
+                        <Link href={`/location/${index}`}>
                             <a>Info</a>
                         </Link>
                     </li>
