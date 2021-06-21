@@ -76,7 +76,7 @@ export default function auth() {
         });
         if (!result.error) {
             // success on login!
-            console.log("wrong!");
+            console.log("Successfull login!");
         }
     };
 
@@ -104,14 +104,14 @@ export default function auth() {
 
             <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
 
-            <button
+            {/* <button
                 onClick={() => {
                     signOut({ redirect: false });
                     Router.push('/');
                 }}
             >
                 logout
-            </button>
+            </button> */}
         </div>
     );
 }

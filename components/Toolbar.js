@@ -18,7 +18,7 @@ export default function Toolbar() {
         listStyle: 'none'
     };
 
-    console.log(session);
+    // console.log(session);
     return (
         <ul style={style}>
             {session && <li>{session.user.email}</li>}

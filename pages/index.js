@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { getAllLocations } from '../utils/mongooseHelpers';
+import Link from 'next/link';
 
 export default function Home(props) {
     const [locations, setLocations] = useState(props.locations);
@@ -23,6 +24,9 @@ export default function Home(props) {
                         <div>location: {location.location}</div>
                         <div>description: {location.description}</div>
                         <div>price: {location.price}</div>
+                        <Link href={`/location/${location.name}`}>
+                            <a>Info</a>
+                        </Link>
                     </li>
                 );
             })}
