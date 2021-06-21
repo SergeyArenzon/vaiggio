@@ -25,7 +25,7 @@ export default NextAuth({
                     console.log('Couldnt log you in!');
                     throw new Error('Couldnt log you in!');
                 }
-                return { email: user.email };
+                return { email: user.email, name: user.firstName + ' ' +  user.lastName};
             },
         }),
     ],

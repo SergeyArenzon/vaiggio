@@ -72,9 +72,11 @@ export default function auth() {
             redirect: false,
             email: data.email,
             password: data.password,
+            
         });
         if (!result.error) {
             // success on login!
+            console.log("wrong!");
         }
     };
 
