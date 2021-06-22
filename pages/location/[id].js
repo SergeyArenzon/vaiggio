@@ -18,5 +18,5 @@ export default function LocationInfo() {
     if(!locationData){
         return <div>Loading...</div>
     }
-    return <div>{locationData}</div>;
+    return <div>{locationData.name}</div>;
 }
