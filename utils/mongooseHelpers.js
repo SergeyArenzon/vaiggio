@@ -1,7 +1,7 @@
-import User from '../models/User';
-import Location from '../models/Location';
-import { compare } from 'bcrypt';
-import connectDB from './connectDB';
+import User from "../models/User";
+import Location from "../models/Location";
+import { compare } from "bcrypt";
+import connectDB from "./connectDB";
 
 //  check for user existance
 export const checkUserExist = async (email) => {
@@ -26,7 +26,7 @@ export const verifyPassword = async (password, hashedPassword) => {
 export const getAllLocations = async () => {
     await connectDB();
     const res = await Location.find().lean();
-    
+
     var locations = res.map((location) => ({
         id: location._id.toString(),
         name: location.name,
@@ -35,6 +35,10 @@ export const getAllLocations = async () => {
         description: location.description,
     }));
 
-
     return locations;
+};
+
+export const getLocationById = async (id) => {
+    const location = await Location.findOne({ _id: id }).exec();
+    return location;
 };
