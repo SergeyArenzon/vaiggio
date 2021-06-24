@@ -24,7 +24,7 @@ export default function Home(props) {
             <div>location: {location.location}</div>
             <div>description: {location.description}</div>
             <div>price: {location.price}</div>
-            <Link
+            <Link type='button'
               href={{
                 pathname: "/location/[id]",
                 query: {
