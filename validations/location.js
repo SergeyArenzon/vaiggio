@@ -10,6 +10,6 @@ export const locationSchema = yup.object().shape({
         .test(
             "Is positive?",
             "ERROR: The number must be greater than 0!",
-            (value) => value > 0
+            (value) => value >= 0
         ),
 });

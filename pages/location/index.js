@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useRef } from "react";
+import { locationSchema } from "../../validations/location";
 
 export default function index() {
     const nameRef = useRef();
@@ -16,14 +17,20 @@ export default function index() {
             description: descriptionRef.current.value,
         };
 
-        const response = await fetch('/api/location', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        console.log(await response.json());
+
+        // check for input validity
+        const isValid = await locationSchema.isValid(data);
+
+        if (isValid) {
+            const response = await fetch("/api/location", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log(await response.json());
+        }
     };
 
     return (
