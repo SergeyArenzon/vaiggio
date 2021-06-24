@@ -18,10 +18,9 @@ export default function Toolbar() {
         listStyle: 'none'
     };
 
-    // console.log(session);
     return (
         <ul style={style}>
-            {session && <li>{session.user.email}</li>}
+            {session && <li>{session.user.name}</li>}
 
             <li>
                 <Link href="/profile">
