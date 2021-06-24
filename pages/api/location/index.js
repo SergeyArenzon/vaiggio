@@ -1,18 +1,29 @@
 import Location from "../../../models/Location";
 import connectDB from "../../../utils/connectDB";
-import { getSession } from 'next-auth/client'
+import { getSession } from "next-auth/client";
 import { getAllLocations } from "../../../utils/mongooseHelpers";
-
+import { locationSchema } from "../../../validations/location";
 
 const handler = async (req, res) => {
-    const session = await getSession({ req })
+    const session = await getSession({ req });
     // console.log(session);
     await connectDB();
 
     // Create new Location
     if (req.method === "POST") {
-
         const { name, price, location, description } = req.body;
+
+        // check for input validity
+        const isValid = await locationSchema.isValid({
+            name,
+            price,
+            location,
+            description,
+        });
+
+        if (!isValid) {
+            res.status(400).json({ message: "Error! Wrong input!" });
+        }
 
         const locationModel = new Location({
             email: session.user.email,
