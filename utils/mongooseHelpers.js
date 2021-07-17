@@ -47,3 +47,9 @@ export const updateLocationById = async (id, updatedLocation) => {
     const response = Location.findByIdAndUpdate(id, updatedLocation);
     return response;
 };
+
+
+export const deleteLocationById = async (id) => {
+    const response = await Location.deleteOne({ _id: id });
+    return response;
+};

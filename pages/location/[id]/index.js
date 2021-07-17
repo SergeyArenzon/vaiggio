@@ -16,11 +16,23 @@ export default function LocationInfo() {
         setLocationData(data.location);
     }, []);
 
+    const onDeleteHandler = async () => {
+        const request = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+        const response = await fetch(`/api/location/${id}`,request);
+        const data = await response.json();
+        
+
+    };
+
     if (!locationData) {
         return <div>Loading...</div>;
     }
 
-    console.log(locationData);
     return (
         <div>
             <h1>Name:{locationData.name}</h1>
@@ -32,7 +44,7 @@ export default function LocationInfo() {
                 <Link href={`${id}/edit`}>
                     <button>Edit</button>
                 </Link>
-                <button>Delete</button>
+                <button onClick={onDeleteHandler}>Delete</button>
             </div>
         </div>
     );
