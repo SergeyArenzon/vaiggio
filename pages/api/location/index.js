@@ -1,7 +1,7 @@
 import Location from "../../../models/Location";
-import connectDB from "../../../utils/connectDB";
+import connectDB from "../../../services/connectDB";
 import { getSession } from "next-auth/client";
-import { getAllLocations } from "../../../utils/mongooseHelpers";
+import { getAllLocations } from "../../../services/mongooseHelpers";
 import { locationSchema } from "../../../validations/location";
 
 const handler = async (req, res) => {

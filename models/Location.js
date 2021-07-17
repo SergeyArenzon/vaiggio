@@ -2,7 +2,7 @@
 //  mongoose Locations module
 //
 
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
@@ -12,10 +12,11 @@ const locationSchema = new Schema({
     location: String,
     price: Number,
     description: String,
+    // creatorId: String,
     date: { type: Date, default: Date.now },
 });
 
 const Location =
-    mongoose.models['location'] || mongoose.model('location', locationSchema);
+    mongoose.models["location"] || mongoose.model("location", locationSchema);
 
 export default Location;

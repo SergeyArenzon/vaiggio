@@ -1,4 +1,4 @@
-import { updateLocationById } from "../../../../utils/mongooseHelpers";
+import { updateLocationById } from "../../../../services/mongooseHelpers";
 
 export default async (req, res) => {
     if (req.method === "PUT") {

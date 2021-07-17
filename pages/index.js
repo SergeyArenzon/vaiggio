@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { getAllLocations } from "../utils/mongooseHelpers";
+import { getAllLocations } from "../services/mongooseHelpers";
 import Link from "next/link";
 
 export default function Home(props) {
