@@ -11,7 +11,6 @@ export default function LocationInfo() {
     useEffect(async () => {
         const response = await fetch(`/api/location/${id}`);
 
-        console.log(id);
         const data = await response.json();
 
         setLocationData(data.location);
@@ -30,7 +29,9 @@ export default function LocationInfo() {
             <div>Discription:{locationData.description}</div>
 
             <div>
-                <button href="/[id]/edit">Edit</button>
+                <Link href={`${id}/edit`}>
+                    <button>Edit</button>
+                </Link>
                 <button>Delete</button>
             </div>
         </div>

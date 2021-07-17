@@ -1,4 +1,4 @@
-import { getLocationById } from "../../../utils/mongooseHelpers";
+import { getLocationById } from "../../../../utils/mongooseHelpers";
 
 export default async (req, res) => {
     if (req.method === "GET") {

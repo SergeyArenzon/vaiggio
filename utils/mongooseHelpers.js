@@ -42,3 +42,8 @@ export const getLocationById = async (id) => {
     const location = await Location.findOne({ _id: id }).exec();
     return location;
 };
+
+export const updateLocationById = async (id, updatedLocation) => {
+    const response = Location.findByIdAndUpdate(id, updatedLocation);
+    return response;
+};
