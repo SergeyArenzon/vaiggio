@@ -8,14 +8,13 @@ export default function index() {
     const priceRef = useRef();
     const descriptionRef = useRef();
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [loadedSession, setLoadedSession] = useState();
+    const [session, setSession] = useState(null);
 
-
-
-    if (isLoading) {
-        return <div>Loading..</div>;
-    }
+    useEffect(() => {
+        getSession().then((session) => {
+            setSession(session);
+        });
+    }, []);
 
     const submitHandler = async (event) => {
         event.preventDefault();
@@ -25,6 +24,7 @@ export default function index() {
             location: locationRef.current.value,
             price: priceRef.current.value,
             description: descriptionRef.current.value,
+            email: session.user.email
         };
 
         // check for input validity
@@ -42,8 +42,6 @@ export default function index() {
         }
     };
 
-    // console.log(session);
-
     return (
         <form onSubmit={submitHandler}>
             <h1>Create New Location</h1>
@@ -60,7 +58,6 @@ export default function index() {
     );
 }
 
-
 // route protector
 
 export async function getServerSideProps(context) {
@@ -69,7 +66,7 @@ export async function getServerSideProps(context) {
     if (!session) {
         return {
             redirect: {
-                destination: '/auth',
+                destination: "/auth",
                 permanent: false,
             },
         };

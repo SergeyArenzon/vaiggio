@@ -12,7 +12,6 @@ const locationSchema = new Schema({
     location: String,
     price: Number,
     description: String,
-    // creatorId: String,
     date: { type: Date, default: Date.now },
 });
 

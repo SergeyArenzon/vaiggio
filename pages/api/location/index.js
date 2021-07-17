@@ -11,7 +11,7 @@ const handler = async (req, res) => {
 
     // Create new Location
     if (req.method === "POST") {
-        const { name, price, location, description } = req.body;
+        const { name, price, location, description, email } = req.body;
 
         // check for input validity
         const isValid = await locationSchema.isValid({
@@ -26,7 +26,7 @@ const handler = async (req, res) => {
         }
 
         const locationModel = new Location({
-            email: session.user.email,
+            email,
             name,
             price,
             location,

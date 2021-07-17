@@ -3,7 +3,15 @@ import { useEffect, useState } from 'react';
 import Router from 'next/router';
 
 export default function profile(props) {
-    return <h1>{props.session.user.email}</h1>;
+
+    console.log(props.session);
+    return <div>
+        
+        <div>Email:{props.session.user.email}</div>
+        <div>Name:{props.session.user.name}</div>
+        
+        
+        </div>;
 }
 
 export async function getServerSideProps(context) {
