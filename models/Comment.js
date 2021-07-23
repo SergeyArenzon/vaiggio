@@ -3,14 +3,13 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const commentSchema = new Schema({
     email: String, 
-    password: String,
-    firstName: String,
-    lastName: String,
+    title: String,
+    body: String,
     date: { type: Date, default: Date.now },
 });
 
-const User = mongoose.models['user'] || mongoose.model('user', userSchema);
+const Comment = mongoose.models['comment'] || mongoose.model('comment', commentSchema);
 
-export default User;
+export default Comment;
