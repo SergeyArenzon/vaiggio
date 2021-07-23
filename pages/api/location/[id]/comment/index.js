@@ -1,7 +1,7 @@
 import { getSession } from "next-auth/client";
-import { findOneUser } from "../../../../../services/mongooseHelpers";
+import { findOneUser, getLocationById,  } from "../../../../../services/mongooseHelpers";
 import Comment from "../../../../../models/Comment";
-import User from "../../../../../models/User";
+import Location from "../../../../../models/Location";
 export default async (req, res) => {
     const session = await getSession({ req });
     //
@@ -13,6 +13,8 @@ export default async (req, res) => {
         const locationId = id;
         const creatorEmail = session.user.email;
         const author = await findOneUser(creatorEmail);
+        const location = await getLocationById(locationId);
+        let commentId = null;
         const comment = new Comment({
             author: author._id,
             title,
@@ -21,11 +23,14 @@ export default async (req, res) => {
 
         try {
             const response = await comment.save();
+            commentId = response._id;
+
             res.status(201).json({
                 message: "Successfully comment added.",
                 response,
             });
         } catch (error) {
+            console.log(error);
             res.status(501).json({
                 message: "Failed adding comment",
                 error,

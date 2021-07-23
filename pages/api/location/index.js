@@ -31,6 +31,7 @@ const handler = async (req, res) => {
             price,
             location,
             description,
+            // comments: []
         });
 
         try {

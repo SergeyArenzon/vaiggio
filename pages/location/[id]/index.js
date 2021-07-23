@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
+import { route } from "next/dist/next-server/server/router";
 
 export default function LocationInfo() {
     const router = useRouter();
@@ -57,8 +58,9 @@ export default function LocationInfo() {
                 "Content-Type": "application/json",
             },
         };
-        const response = await fetch(`/api/location/${id}/comment/`, request);
+        const response = await fetch(`/api/location/${id}/comment`, request);
         console.log(response);
+        // router.reload();
     };
 
     if (!locationData) {

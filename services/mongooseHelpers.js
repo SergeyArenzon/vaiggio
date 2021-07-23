@@ -34,7 +34,6 @@ export const getAllLocations = async () => {
         location: location.location,
         description: location.description,
     }));
-
     return locations;
 };
 
