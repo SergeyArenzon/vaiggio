@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { locationSchema } from "../../validations/location";
 import { getSession } from "next-auth/client";
+import {useRouter} from "next/router" 
 
 export default function index() {
     const nameRef = useRef();
     const locationRef = useRef();
     const priceRef = useRef();
     const descriptionRef = useRef();
+    const router = useRouter();
 
     const [session, setSession] = useState(null);
 
@@ -39,6 +41,8 @@ export default function index() {
                 },
             });
             console.log(await response.json());
+            router.replace('/')
+            
         }
     };
 

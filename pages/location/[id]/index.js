@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/client";
 
+
+
 export default function LocationInfo() {
     const router = useRouter();
     const { id } = router.query;
@@ -24,7 +26,6 @@ export default function LocationInfo() {
 
     const onDeleteHandler = async () => {
 
-
         // check for created location user identity 
         if (session.user.email !== locationData.email) {
             alert("not the user");
@@ -38,6 +39,9 @@ export default function LocationInfo() {
         };
         const response = await fetch(`/api/location/${id}`, request);
         const data = await response.json();
+        console.log(data);
+        router.replace('/')
+      
     };
 
     if (!locationData) {
