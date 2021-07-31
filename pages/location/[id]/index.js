@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import { route } from "next/dist/next-server/server/router";
+import { set } from "mongoose";
 
 export default function LocationInfo() {
     const router = useRouter();
@@ -10,12 +11,12 @@ export default function LocationInfo() {
 
     const [locationData, setLocationData] = useState(null);
     const [session, setSession] = useState(null);
+    const [comments, setComment] = useState([]);
     const titleRef = useRef();
     const bodyRef = useRef();
 
     useEffect(async () => {
         const response = await fetch(`/api/location/${id}`);
-
         const data = await response.json();
 
         setLocationData(data.location);
@@ -23,6 +24,11 @@ export default function LocationInfo() {
         getSession().then((session) => {
             setSession(session);
         });
+
+        const commentsResponse = await fetch(`/api/location/${id}/comment`);
+        const commentsData = await commentsResponse.json();
+        setComment(commentsData.comments);
+        console.log(commentsData.comments);
     }, []);
 
     const onDeleteHandler = async () => {
@@ -67,6 +73,24 @@ export default function LocationInfo() {
         return <div>Loading...</div>;
     }
 
+    let commentsForm = null;
+    if (comments && comments.length) {
+        commentsForm = (
+            <ul>
+                {comments.map((comment) => (
+                    <li>
+                        {" "}
+                        Title: {comment.title} Body: {comment.body} Author:{" "}
+                        {comment.author.firstName +
+                            " " +
+                            comment.author.lastName}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
+
+    // console.log(comments);
     return (
         <div>
             <h1>Name:{locationData.name}</h1>
@@ -86,6 +110,7 @@ export default function LocationInfo() {
                 <input type="text" placeholder="body" ref={bodyRef}></input>
                 <button>Submit</button>
             </form>
+            {commentsForm}
         </div>
     );
 }

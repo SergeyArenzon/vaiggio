@@ -1,5 +1,6 @@
 import User from "../models/User";
 import Location from "../models/Location";
+import Comment from "../models/Comment";
 import { compare } from "bcrypt";
 import connectDB from "./connectDB";
 
@@ -52,3 +53,27 @@ export const deleteLocationById = async (id) => {
     const response = await Location.deleteOne({ _id: id });
     return response;
 };
+
+export const getCommentsByLocationId = async(id) => { 
+       
+    // const commentsObj = await Location.findOne({ _id: id }).populate("comments").exec();
+    // return commentsObj;
+
+
+   const comments = await Location.findOne({
+        _id: id
+    }).
+    populate({
+        path: 'comments',
+        model: Comment,
+        populate: {
+            path: 'author',
+        model: User
+
+        }
+    });
+
+
+    return(comments.comments);
+   
+}

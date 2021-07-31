@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const commentSchema = new Schema({
-    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    author: { type: Schema.Types.ObjectId, ref: 'user' },
     title: String,
     body: String,
     date: { type: Date, default: Date.now },

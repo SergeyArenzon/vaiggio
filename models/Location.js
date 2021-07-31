@@ -12,7 +12,7 @@ const locationSchema = new Schema({
     location: String,
     price: Number,
     description: String,
-    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "comment" }],
     date: { type: Date, default: Date.now },
 });
 
