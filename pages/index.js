@@ -44,9 +44,12 @@ export default function Home(props) {
     );
     return (
         <div>
-            <div>Traveling Locations</div>
+            <div class="text-yellow-600">Traveling Locations</div>
             {locationsList}
-            <button onClick={() => router.push("/location")}>
+            <button
+                class="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer"
+                onClick={() => router.push("/location")}
+            >
                 Create New Location
             </button>
         </div>

@@ -19,7 +19,7 @@ export default function Toolbar() {
     };
 
     return (
-        <ul style={style}>
+        <ul style={style} >
             {session && <li>{session.user.name}</li>}
 
             <li>
