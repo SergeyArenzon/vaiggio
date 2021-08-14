@@ -47,7 +47,9 @@ export default function Home(props) {
   );
   return (
     <div class="px-20 flex flex-col items-center ">
-      <div class="text-center text-green-800 text-5xl mb-10">Traveling Locations</div>
+      <div class="text-center text-green-800 text-5xl mb-10">
+        Traveling Locations
+      </div>
       {locationsList}
       <button
         class="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer ontent-center"
