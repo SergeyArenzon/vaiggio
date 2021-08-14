@@ -1,11 +1,10 @@
-import Toolbar from './Toolbar';
+import TopBar from './TopBar/TopBar';
 
 export default function Layout({ children }) {
     return (
         <div>
-            <Toolbar />
-
-            <div class="h-screen relative bg-gray-400 pt-10">{children}</div>
+            <TopBar />
+            <main className="h-screen relative pt-10 px-20">{children}</main>
         </div>
     );
 }
