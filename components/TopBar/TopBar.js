@@ -19,9 +19,16 @@ export default function TopBar() {
             <a className="text-white">PROFILE</a>
           </Link>
         </li>
-        {session && (
+        {session ? (
           <li className="cursor-pointer" onClick={() => signOut({ redirect: false })}>Sign Out</li>
-        )}
+        )
+        :
+        <Link href="/auth">
+            <a className="text-white">Login</a>
+        </Link>
+      
+
+        }
       </ul>
     </navbar>
   );
