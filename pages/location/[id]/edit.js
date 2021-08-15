@@ -1,5 +1,5 @@
 // //////////////////
-// Edit location page
+// Edit view location 
 // //////////////////
 
 import { useRouter } from "next/router";
