@@ -22,7 +22,12 @@ export default async (req, res) => {
     const session = await getSession({ req });
     console.log(session.user.email);
     const location = await getLocationById(id);
-    console.log("location",location);
+    console.log(session.user.email, location.email);
+
+    if(session.user.email !== location.email){
+        res.status(401).json({message: "Wrong user trying to delete location"});
+        return;
+    }
     try {
 
       const respone = await deleteLocationById(id);
