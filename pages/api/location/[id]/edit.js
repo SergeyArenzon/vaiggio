@@ -1,10 +1,21 @@
-import { updateLocationById } from "../../../../services/mongooseHelpers";
+import { updateLocationById, getLocationById } from "../../../../services/mongooseHelpers";
+import { getSession } from "next-auth/client";
+
 
 export default async (req, res) => {
+    const session = await getSession({ req });
+    
+
     if (req.method === "PUT") {
         const { id } = req.query;
         const updatedData = req.body;
 
+        // Check for correct user trying to edit 
+        const location = await getLocationById(id);
+        if(location.email !== session.user.email){
+            res.status(401).json({message: "Wrong user editing location"});
+            return;
+        }
         try {
             const response = await updateLocationById(id, updatedData);
 
