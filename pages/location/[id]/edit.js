@@ -2,6 +2,7 @@
 // Edit view location 
 // //////////////////
 
+import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 
@@ -13,6 +14,8 @@ export default function Edit() {
 
     const router = useRouter();
     const { id } = router.query;
+    const [session, loading] = useSession();
+    
 
     const [locationData, setLocationData] = useState(null);
 
@@ -23,6 +26,12 @@ export default function Edit() {
     }, []);
 
     const onSaveHandler = async () => {
+
+        // Client protection
+        if(locationData.email !== session.user.email){
+            alert("Wrong user!")
+            return;
+        }
         const updatedLocation = {
             name: nameRef.current.value,
             location: locationRef.current.value,
