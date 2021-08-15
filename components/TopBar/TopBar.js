@@ -6,7 +6,7 @@ export default function TopBar() {
   const [session, loading] = useSession();
 
   return (
-    <header className="flex justify-end bg-green-800 h-10">
+    <navbar className="flex justify-end bg-green-800 h-10">
       <ul className="flex items-center w-72 justify-evenly">
         {session && <li>{session.user.name}</li>}
         <li>
@@ -23,6 +23,6 @@ export default function TopBar() {
           <li className="cursor-pointer" onClick={() => signOut({ redirect: false })}>Sign Out</li>
         )}
       </ul>
-    </header>
+    </navbar>
   );
 }
