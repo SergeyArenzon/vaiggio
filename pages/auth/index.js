@@ -54,7 +54,11 @@ export default function auth() {
             },
         });
 
-        return response.json();
+        if(response.status === 201){
+            router.replace('/');
+            const res = await response.json();
+            return res;
+        }
     };
 
     ////////////////////
@@ -76,8 +80,12 @@ export default function auth() {
         });
         if (!result.error) {
             // success on login!
+            router.replace("/")
             console.log("Successfull login!");
+
         }
+
+
     };
 
     const signUpForm = (
