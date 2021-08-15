@@ -8,6 +8,7 @@ const { Schema } = mongoose;
 
 const locationSchema = new Schema({
     email: String,
+    author: { type: Schema.Types.ObjectId, ref: "user" },
     name: String,
     location: String,
     price: Number,

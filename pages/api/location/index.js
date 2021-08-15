@@ -1,13 +1,12 @@
 import Location from "../../../models/Location";
 import connectDB from "../../../services/connectDB";
 import { getSession } from "next-auth/client";
-import { getAllLocations } from "../../../services/mongooseHelpers";
+import { getAllLocations, findOneUser } from "../../../services/mongooseHelpers";
 import { locationSchema } from "../../../validations/location";
 
 const handler = async (req, res) => {
-    const session = await getSession({ req });
-    // console.log(session);
     await connectDB();
+    const session = await getSession({ req });
 
     // Create new Location
     if (req.method === "POST") {
@@ -25,7 +24,9 @@ const handler = async (req, res) => {
             res.status(400).json({ message: "Error! Wrong input!" });
         }
 
+        const author = await findOneUser(session.user.email);
         const locationModel = new Location({
+            author: author._id,
             email,
             name,
             price,
