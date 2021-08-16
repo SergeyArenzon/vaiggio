@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { locationSchema } from "../../validations/location";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import Map from "../../components/Map/Map";
 
 export default function index() {
   const nameRef = useRef();
@@ -57,6 +58,7 @@ export default function index() {
       <div>Description</div>
       <textarea type="text" ref={descriptionRef}></textarea>
       <button>Create</button>
+      {/* <Map/> */}
     </form>
   );
 }
