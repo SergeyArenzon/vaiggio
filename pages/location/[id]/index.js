@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import { route } from "next/dist/next-server/server/router";
 import { set } from "mongoose";
+import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
 
 export default function LocationInfo() {
   const router = useRouter();
@@ -109,6 +110,7 @@ export default function LocationInfo() {
         <input type="text" placeholder="body" ref={bodyRef}></input>
         <button>Submit</button>
       </form>
+      <ImageCarousel/>
       {commentsForm}
     </React.Fragment>
   );
