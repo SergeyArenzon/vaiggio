@@ -15,6 +15,7 @@ const locationSchema = new Schema({
     description: String,
     comments: [{ type: Schema.Types.ObjectId, ref: "comment" }],
     date: { type: Date, default: Date.now },
+    images: []
 });
 
 const Location =

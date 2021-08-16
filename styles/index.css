@@ -9,4 +9,7 @@
     .tab {
         @apply bg-green-200;
     }
+    .slide{
+        @apply max-h-80
+    }
 }

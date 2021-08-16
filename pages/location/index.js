@@ -3,8 +3,10 @@ import { locationSchema } from "../../validations/location";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import Map from "../../components/Map/Map";
+import ImagesUrlInput from "../../components/ImagesUrlInput/ImagesUrlInput";
 
 export default function index() {
+  const [imageUrls, setImageUrls] = useState([]);
   const nameRef = useRef();
   const locationRef = useRef();
   const priceRef = useRef();
@@ -57,6 +59,7 @@ export default function index() {
       <input type="number" ref={priceRef}></input>
       <div>Description</div>
       <textarea type="text" ref={descriptionRef}></textarea>
+      <ImagesUrlInput imageUrls={imageUrls} setImageUrls={setImageUrls}/>
       <button>Create</button>
       {/* <Map/> */}
     </form>
