@@ -1,5 +1,4 @@
 export default function ImagesUrlInput({ setImageUrls, imageUrls }) {
-
   const addUrlHandler = () => {
     const newImageUrls = [...imageUrls];
     newImageUrls.push("");
@@ -7,9 +6,8 @@ export default function ImagesUrlInput({ setImageUrls, imageUrls }) {
   };
 
   const deleteHandler = (index) => {
-      const newImageUrls = [...imageUrls];
-      newImageUrls.splice(index, 1);
-      console.log(newImageUrls);
+    const newImageUrls = [...imageUrls];
+    newImageUrls.splice(index, 1);
     setImageUrls(newImageUrls);
   };
 
@@ -17,19 +15,21 @@ export default function ImagesUrlInput({ setImageUrls, imageUrls }) {
     const newImageUrls = [...imageUrls];
     newImageUrls[index] = event.target.value;
     setImageUrls(newImageUrls);
-  }
-
-
+  };
 
   const currentUrls = imageUrls.map((url, index) => {
+    console.log(url);
     return (
-      <li key={index}>
-        <input type="text" onChange={(event) => urlTypingHandler(event, index)} placeholder={index}></input>
+      <li key={url + index}>
+        <input
+          type="text"
+          onChange={(event) => urlTypingHandler(event, index)}
+          placeholder={url}
+        ></input>
         <button onClick={() => deleteHandler(index)}>Delete</button>
       </li>
     );
   });
-
 
   return (
     <div>
