@@ -1,12 +1,15 @@
+import React from 'react';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import "./ImageCarousel.css"
-
+import PropTypes from 'prop-types';
 export default function ImageCarousel({images}) {
 
-  const imagesForm = images.map((image) => {
+  ImageCarousel.propTypes = {
+    images: PropTypes.array.isRequired,
+  };
+  const imagesForm = images.map((image, index) => {
     return (
-      <dev style={{height: "300px"}}>
+      <dev key={index} style={{height: "300px"}}>
         <img src={image} style={{ height: "100%", width: "auto" }} />
       </dev>
     );

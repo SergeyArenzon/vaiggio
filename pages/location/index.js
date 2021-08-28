@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { locationSchema } from "../../validations/location";
 import { getSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import Map from "../../components/Map/Map";
 import ImagesUrlInput from "../../components/ImagesUrlInput/ImagesUrlInput";
 
 export default function index() {

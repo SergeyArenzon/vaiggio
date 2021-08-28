@@ -1,10 +1,15 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
+import PropTypes from 'prop-types';
+
 
 export default function ImagesUrlInput({ setImageUrls, imageUrls }) {
 
+  ImagesUrlInput.propTypes = {
+    imageUrls: PropTypes.array.isRequired,
+    setImageUrls: PropTypes.func.isRequired,
+  };
+  
   const inputRef = useRef();
-
-
   const addUrlHandler = () => {
     const newImageUrls = [...imageUrls];
     newImageUrls.push("");
