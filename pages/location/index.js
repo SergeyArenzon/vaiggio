@@ -48,6 +48,7 @@ export default function index() {
     }
   };
 
+
   return (
     <form onSubmit={submitHandler}>
       <h1>Create New Location</h1>
