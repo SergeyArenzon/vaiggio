@@ -5,7 +5,7 @@ import {
     getCommentsByLocationId,
 } from "../../../../../services/mongooseHelpers";
 import Comment from "../../../../../models/Comment";
-import Location from "../../../../../models/Location";
+
 export default async (req, res) => {
     const session = await getSession({ req });
     //
@@ -18,7 +18,6 @@ export default async (req, res) => {
         const creatorEmail = session.user.email;
         const author = await findOneUser(creatorEmail);
         const location = await getLocationById(locationId);
-        let commentId = null;
 
         // console.log(location);
         const comment = new Comment({
@@ -29,7 +28,6 @@ export default async (req, res) => {
 
         try {
             const response = await comment.save();
-            commentId = response._id;
 
             location.comments.push(comment);
             location.save();
