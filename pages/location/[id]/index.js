@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import { route } from "next/dist/next-server/server/router";
-import { set } from "mongoose";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
 
 export default function LocationInfo() {
