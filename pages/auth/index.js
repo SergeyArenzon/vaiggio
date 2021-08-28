@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { userSchema } from '../../validations/user';
-import { signIn, signOut } from 'next-auth/client';
+import { signIn } from 'next-auth/client';
 import { getSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
-import Router from 'next/router';
 
 export default function auth() {
     const emailRef = useRef();

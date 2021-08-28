@@ -1,6 +1,5 @@
 import { getSession } from 'next-auth/client';
-import { useEffect, useState } from 'react';
-import Router from 'next/router';
+import React from 'react';
 
 export default function profile(props) {
 

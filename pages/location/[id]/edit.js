@@ -2,9 +2,10 @@
 // Edit view location 
 // //////////////////
 
+ 
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function Edit() {
     const nameRef = useRef();
@@ -14,7 +15,7 @@ export default function Edit() {
 
     const router = useRouter();
     const { id } = router.query;
-    const [session, loading] = useSession();
+    const [session, ] = useSession();
     
 
     const [locationData, setLocationData] = useState(null);
@@ -32,23 +33,6 @@ export default function Edit() {
             alert("Wrong user!")
             return;
         }
-        const updatedLocation = {
-            name: nameRef.current.value,
-            location: locationRef.current.value,
-            price: priceRef.current.value,
-            description: descriptionRef.current.value,
-        };
-
-        const request = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedLocation),
-        };
-        const response = await fetch(`/api/location/${id}/edit`, request);
-        const data = await response.json();
-
     };
 
     if (!locationData) {
