@@ -76,8 +76,8 @@ export default function LocationInfo() {
   if (comments && comments.length) {
     commentsForm = (
       <ul>
-        {comments.map((comment) => (
-          <li>
+        {comments.map((comment, index) => (
+          <li key={index}>
             {" "}
             Title: {comment.title} Body: {comment.body} Author:{" "}
             {comment.author.firstName + " " + comment.author.lastName}
