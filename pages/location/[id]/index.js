@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
-import { route } from "next/dist/next-server/server/router";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
 
 export default function LocationInfo() {
@@ -88,7 +87,6 @@ export default function LocationInfo() {
     );
   }
 
-  // console.log(comments);
   return (
     <React.Fragment>
       <div className="mx-20">
@@ -109,7 +107,7 @@ export default function LocationInfo() {
         <input type="text" placeholder="body" ref={bodyRef}></input>
         <button>Submit</button>
       </form>
-      <ImageCarousel/>
+      {locationData.images.length > 0 && <ImageCarousel images={locationData.images}/>}
       {commentsForm}
     </React.Fragment>
   );

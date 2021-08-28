@@ -10,7 +10,7 @@ const handler = async (req, res) => {
 
     // Create new Location
     if (req.method === "POST") {
-        const { name, price, location, description, email } = req.body;
+        const { name, price, location, description, email, images } = req.body;
 
         // check for input validity
         const isValid = await locationSchema.isValid({
@@ -32,7 +32,7 @@ const handler = async (req, res) => {
             price,
             location,
             description,
-            // comments: []
+            images
         });
 
         try {

@@ -30,6 +30,7 @@ export default function index() {
       price: priceRef.current.value,
       description: descriptionRef.current.value,
       email: session.user.email,
+      images: imageUrls
     };
 
     // check for input validity
