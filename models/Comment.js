@@ -4,13 +4,14 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const commentSchema = new Schema({
-    author: { type: Schema.Types.ObjectId, ref: 'user' },
-    title: String,
-    body: String,
-    date: { type: Date, default: Date.now },
+  author: { type: Schema.Types.ObjectId, ref: "user" },
+  title: String,
+  body: String,
+  date: { type: Date, default: Date.now },
+  rating: Number,
 });
 
 const Comment =
-    mongoose.models["comment"] || mongoose.model("comment", commentSchema);
+  mongoose.models["comment"] || mongoose.model("comment", commentSchema);
 
 export default Comment;

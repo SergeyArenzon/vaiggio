@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import PropTypes from 'prop-types';
 
 
+
 export default function Home(props) {
 
   Home.propTypes = {
@@ -55,7 +56,7 @@ export default function Home(props) {
       </div>
       {locationsList}
       <button
-        claclassNamess="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer ontent-center"
+        className="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer ontent-center"
         onClick={() => router.push("/location")}
       >
         Create New Location
