@@ -3,7 +3,7 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import React, { useState } from "react";
 import { useSession } from "next-auth/client";
-import { findOneUser } from "../../services/mongooseHelpers";
+import { useRouter } from "next/router";
 
 const labels = {
   0.5: "Useless",
@@ -32,14 +32,30 @@ export default function HoverRating() {
   const classes = useStyles();
 
   const [session] = useSession();
+  const router = useRouter();
 
-
-
-  const onRatingClickHandler = async() => {
+  const onRatingClickHandler = async () => {
     const user = session.user;
-    // const res = await findOneUser(user.email);
-    // console.log(user);
+    const { id } = router.query;
+    const data = { user, value };
+
+    const res = await fetch(`/api/location/${id}/rating`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+
+    // console.log(res);
+
+    
   };
+  console.log("----");
+  console.log(value);
+  console.log(hover);
+  console.log("----");
 
   return (
     <div className={classes.root}>
@@ -47,7 +63,7 @@ export default function HoverRating() {
         name="hover-feedback"
         value={value}
         precision={0.5}
-        onClick={onRatingClickHandler}
+        // onClick={onRatingClickHandler}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
@@ -58,6 +74,8 @@ export default function HoverRating() {
       {value !== null && (
         <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
       )}
+
+      <button onClick={onRatingClickHandler}>rate!</button>
     </div>
   );
 }
