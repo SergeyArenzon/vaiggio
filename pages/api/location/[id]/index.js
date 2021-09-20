@@ -24,12 +24,11 @@ export default async (req, res) => {
     const location = await getLocationById(id);
     console.log(session.user.email, location.email);
 
-    if(session.user.email !== location.email){
-        res.status(401).json({message: "Wrong user trying to delete location"});
-        return;
+    if (session.user.email !== location.email) {
+      res.status(401).json({ message: "Wrong user trying to delete location" });
+      return;
     }
     try {
-
       const respone = await deleteLocationById(id);
       res.status(200).json({
         message: "Successfully location Deleted by id",

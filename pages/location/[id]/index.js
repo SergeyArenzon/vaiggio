@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
+import StarsRating from '../../../components/StarsRating/StarsRating'
 
 export default function LocationInfo() {
   const router = useRouter();
@@ -107,6 +108,7 @@ export default function LocationInfo() {
         <input type="text" placeholder="body" ref={bodyRef}></input>
         <button>Submit</button>
       </form>
+      <StarsRating/>
       {locationData.images.length > 0 && <ImageCarousel images={locationData.images}/>}
       {commentsForm}
     </React.Fragment>
