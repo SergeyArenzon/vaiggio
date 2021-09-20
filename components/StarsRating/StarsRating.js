@@ -2,6 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import React, { useState } from "react";
+import { useSession } from "next-auth/client";
+import { findOneUser } from "../../services/mongooseHelpers";
 
 const labels = {
   0.5: "Useless",
@@ -29,12 +31,23 @@ export default function HoverRating() {
   const [hover, setHover] = useState(-1);
   const classes = useStyles();
 
+  const [session] = useSession();
+
+
+
+  const onRatingClickHandler = async() => {
+    const user = session.user;
+    // const res = await findOneUser(user.email);
+    // console.log(user);
+  };
+
   return (
     <div className={classes.root}>
       <Rating
         name="hover-feedback"
         value={value}
         precision={0.5}
+        onClick={onRatingClickHandler}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

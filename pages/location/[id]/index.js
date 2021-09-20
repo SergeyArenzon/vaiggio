@@ -106,7 +106,7 @@ export default function LocationInfo() {
       <form onSubmit={onCommentCreate}>
         <input type="text" placeholder="title" ref={titleRef}></input>
         <input type="text" placeholder="body" ref={bodyRef}></input>
-        <StarsRating/>
+        {/* <StarsRating/> */}
         <button>Submit</button>
       </form>
       {locationData.images.length > 0 && <ImageCarousel images={locationData.images}/>}
