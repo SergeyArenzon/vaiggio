@@ -3,8 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
-import StarsRating from '../components/StarsRating/StarsRating';
-
+import StarsRating from '../../../components/StarsRating/StarsRating'
 
 export default function LocationInfo() {
   const router = useRouter();
