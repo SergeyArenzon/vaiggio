@@ -35,28 +35,19 @@ export default function HoverRating() {
   const router = useRouter();
 
   const onRatingClickHandler = async () => {
-    const user = session.user;
+    // const user = session.user;
     const { id } = router.query;
-    const data = { user, value };
+    const data = {  rating: value };
 
     const res = await fetch(`/api/location/${id}/rating`, {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
-    });
-
-
-    // console.log(res);
-
-    
+    });    
   };
-  console.log("----");
-  console.log(value);
-  console.log(hover);
-  console.log("----");
-
+ 
   return (
     <div className={classes.root}>
       <Rating
