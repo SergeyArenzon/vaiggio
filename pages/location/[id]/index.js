@@ -42,7 +42,7 @@ export default function LocationInfo() {
     const commentsResponse = await fetch(`/api/location/${id}/comment`);
     const commentsData = await commentsResponse.json();
     setComment(commentsData.comments);
-    console.log(commentsData.comments);
+    
   }, []);
 
   const onDeleteHandler = async () => {
@@ -102,7 +102,6 @@ export default function LocationInfo() {
     );
   }
 
-  console.log(avgRating);
   return (
     <React.Fragment>
       <div className="mx-20">

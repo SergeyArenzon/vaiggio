@@ -42,7 +42,6 @@ export default function StarsRating({currentRating}) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("x",currentRating);
     setValue(currentRating);
   }, [currentRating])
 
@@ -60,8 +59,6 @@ export default function StarsRating({currentRating}) {
     });    
   };
  
-  console.log("value",value);
-  console.log("currentRating",currentRating);
   return (
     <div className={classes.root}>
       <Rating
