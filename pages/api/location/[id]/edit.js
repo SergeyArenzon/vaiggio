@@ -1,4 +1,4 @@
-import { updateLocationById, getLocationById } from "../../../../services/mongooseHelpers";
+import { updateLocationById, getLocationById } from "../../../../services/db";
 import { getSession } from "next-auth/client";
 
 

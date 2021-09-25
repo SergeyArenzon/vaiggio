@@ -1,7 +1,7 @@
 import {
   getLocationById,
   deleteLocationById,
-} from "../../../../services/mongooseHelpers";
+} from "../../../../services/db";
 import { getSession } from "next-auth/client";
 
 export default async (req, res) => {

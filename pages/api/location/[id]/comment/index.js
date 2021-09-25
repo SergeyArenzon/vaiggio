@@ -3,7 +3,7 @@ import {
     findOneUser,
     getLocationById,
     getCommentsByLocationId,
-} from "../../../../../services/mongooseHelpers";
+} from "../../../../../services/db";
 import Comment from "../../../../../models/Comment";
 
 export default async (req, res) => {

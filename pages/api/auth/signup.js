@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import connectDB from '../../../services/connectDB';
 import User from '../../../models/User';
-import { checkUserExist } from '../../../services/mongooseHelpers';
+import { checkUserExist } from '../../../services/db';
 import { userSchema } from '../../../validations/user';
 import bcrypt from 'bcrypt';
 

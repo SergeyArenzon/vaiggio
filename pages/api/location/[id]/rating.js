@@ -3,7 +3,7 @@ import {
   findOneUser,
   getLocationById,
   updateLocationById,
-} from "../../../../services/mongooseHelpers";
+} from "../../../../services/db";
 
 export default async (req, res) => {
   const session = await getSession({ req });
@@ -35,8 +35,6 @@ export default async (req, res) => {
         location,
       });
     } catch (error) {
-      console.log(error);
-
       res.status(500).json({
         message: "Failed adding rating",
         rating,
