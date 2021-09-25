@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
-import StarsRating from '../../../components/StarsRating/StarsRating'
+import StarsRating from "../../../components/StarsRating/StarsRating";
 
 export default function LocationInfo() {
   const router = useRouter();
@@ -12,6 +12,7 @@ export default function LocationInfo() {
   const [locationData, setLocationData] = useState(null);
   const [session, setSession] = useState(null);
   const [comments, setComment] = useState([]);
+  const [avgRating, setAvgRating] = useState(null);
   const titleRef = useRef();
   const bodyRef = useRef();
 
@@ -20,6 +21,19 @@ export default function LocationInfo() {
     const data = await response.json();
 
     setLocationData(data.location);
+
+    let sumOfRatings = 0;
+    if (data.location.ratings.length === 0) {
+      setAvgRating(0);
+    } else {
+      data.location.ratings.forEach((ratingObj) => {
+        sumOfRatings += ratingObj.rating;
+      });
+      const calculatedAvgRating =
+        (await Math.round((sumOfRatings / data.location.ratings.length) * 2)) /
+        2;
+      setAvgRating(calculatedAvgRating);
+    }
 
     getSession().then((session) => {
       setSession(session);
@@ -88,6 +102,7 @@ export default function LocationInfo() {
     );
   }
 
+  console.log(avgRating);
   return (
     <React.Fragment>
       <div className="mx-20">
@@ -108,8 +123,10 @@ export default function LocationInfo() {
         <input type="text" placeholder="body" ref={bodyRef}></input>
         <button>Submit</button>
       </form>
-      <StarsRating/>
-      {locationData.images.length > 0 && <ImageCarousel images={locationData.images}/>}
+      <StarsRating currentRating={avgRating} />
+      {locationData.images.length > 0 && (
+        <ImageCarousel images={locationData.images} />
+      )}
       {commentsForm}
     </React.Fragment>
   );
