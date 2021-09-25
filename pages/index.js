@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllLocations } from "../services/mongooseHelpers";
+import { getAllLocations } from "../services/db";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import PropTypes from 'prop-types';

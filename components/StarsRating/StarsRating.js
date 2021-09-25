@@ -4,6 +4,9 @@ import Box from "@material-ui/core/Box";
 import React, { useState } from "react";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import PropTypes from 'prop-types';
+
 
 const labels = {
   0.5: "Useless",
@@ -26,13 +29,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HoverRating() {
-  const [value, setValue] = useState(2);
+export default function StarsRating({currentRating}) {
+  StarsRating.propTypes = {
+    currentRating: PropTypes.number.isRequired,
+  };
+
+  const [value, setValue] = useState(currentRating);
   const [hover, setHover] = useState(-1);
   const classes = useStyles();
 
   const [session] = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    console.log("x",currentRating);
+    setValue(currentRating);
+  }, [currentRating])
 
   const onRatingClickHandler = async () => {
     // const user = session.user;
@@ -48,13 +60,14 @@ export default function HoverRating() {
     });    
   };
  
+  console.log("value",value);
+  console.log("currentRating",currentRating);
   return (
     <div className={classes.root}>
       <Rating
         name="hover-feedback"
         value={value}
         precision={0.5}
-        // onClick={onRatingClickHandler}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

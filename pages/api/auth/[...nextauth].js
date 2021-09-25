@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { findOneUser, verifyPassword } from '../../../services/mongooseHelpers';
+import { findOneUser, verifyPassword } from '../../../services/db';
 
 export default NextAuth({
     session: { jwt: true },
