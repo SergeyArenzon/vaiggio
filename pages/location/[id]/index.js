@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { getSession } from "next-auth/client";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
 import StarsRating from "../../../components/StarsRating/StarsRating";
+import Map from "../../../components/Map/Map";
 
 export default function LocationInfo() {
   const router = useRouter();
@@ -42,7 +43,6 @@ export default function LocationInfo() {
     const commentsResponse = await fetch(`/api/location/${id}/comment`);
     const commentsData = await commentsResponse.json();
     setComment(commentsData.comments);
-    
   }, []);
 
   const onDeleteHandler = async () => {
@@ -105,6 +105,8 @@ export default function LocationInfo() {
   return (
     <React.Fragment>
       <div className="mx-20">
+        <Map/>
+        
         <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
         <div>Location:{locationData.location}</div>
         <div>Price:{locationData.price}$</div>
