@@ -1,6 +1,6 @@
 import GoogleMapReact from "google-map-react";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <div style={{background: "red", height:"20px", width: "20px"}}>{text}</div>;
 
 const { NEXT_PUBLIC_GOOGLE_MAPS_API_KEY } = process.env;
 
