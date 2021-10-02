@@ -102,10 +102,11 @@ export default function LocationInfo() {
     );
   }
 
+console.log(locationData);
   return (
     <React.Fragment>
       <div className="mx-20">
-        <Map/>
+        <Map lat={locationData.coordinate[0]} lng={locationData.coordinate[1]}/>
         
         <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
         <div>Location:{locationData.location}</div>

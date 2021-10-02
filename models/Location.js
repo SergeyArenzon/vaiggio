@@ -14,6 +14,7 @@ const locationSchema = new Schema({
   price: Number,
   description: String,
   comments: [{ type: Schema.Types.ObjectId, ref: "comment" }],
+  coordinate: [Number, Number],
   date: { type: Date, default: Date.now },
   images: [],
   ratings: [
