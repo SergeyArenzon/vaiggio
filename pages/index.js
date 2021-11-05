@@ -16,7 +16,7 @@ export default function Home(props) {
 
   useEffect(async () => {
     console.log("scsdfsdgsg");
-    const response = await fetch("http://localhost:5000/location");
+    const response = await fetch("location");
     const updatedLocations = await response.json();
 
     setLocations(updatedLocations.locations);

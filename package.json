@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev & npm run server",
     "server": "node server/server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "next start & npm run server",
     "lint": "next lint"
   },
   "dependencies": {

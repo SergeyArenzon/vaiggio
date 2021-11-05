@@ -29,7 +29,7 @@ app.prepare().then(() => {
     return handle(req, res)
   })
 
-  server.listen(5000, (err) => {
+  server.listen(3000, (err) => {
       if (err) throw err;
       console.log("> Ready on http://localhost:5000");
       });
