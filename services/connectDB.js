@@ -8,7 +8,7 @@ module.exports.dbConnect = async() => {
         return;
     }
     try{
-        await mongoose.connect(process.env.MONGODB_URL, {
+        await mongoose.connect("mongodb+srv://sergey:TyphooNN91!@cluster0.8rtgv.mongodb.net/data?retryWrites=true&w=majority", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
