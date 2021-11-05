@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose')
 
-export default async function dbConnect() {
+
+module.exports.dbConnect = async() => {
+    console.log("sadasfsdfs");
     if (mongoose.connections[0].readyState) {
         return;
     }

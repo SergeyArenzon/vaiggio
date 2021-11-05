@@ -2,7 +2,8 @@
 //  mongoose Locations module
 //
 
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
+
 
 const { Schema } = mongoose;
 
@@ -28,4 +29,5 @@ const locationSchema = new Schema({
 const Location =
   mongoose.models["location"] || mongoose.model("location", locationSchema);
 
-export default Location;
+// export default Location;
+module.exports = Location;

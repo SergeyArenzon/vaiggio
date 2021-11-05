@@ -15,7 +15,8 @@ export default function Home(props) {
   const router = useRouter();
 
   useEffect(async () => {
-    const response = await fetch("/api/location");
+    console.log("scsdfsdgsg");
+    const response = await fetch("http://localhost:5000/location");
     const updatedLocations = await response.json();
 
     setLocations(updatedLocations.locations);
@@ -66,6 +67,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
+  console.log("wooooooow");
   const locations = await getAllLocations();
 
   return {
