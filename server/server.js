@@ -2,6 +2,7 @@ const { createServer } = require("http");
 const { parse } = require("url");
 const next = require("next");
 const express = require("express");
+require('dotenv').config();
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
